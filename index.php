@@ -45,6 +45,7 @@
             <option value="TO">Tocantins</option>
             <option value="EX">Estrangeiro</option>
         </select><br>
+        E-mail:<input name="email" maxlength="50"><br>
         <button type="submit">Salvar</button>
     </form>
 </body>
