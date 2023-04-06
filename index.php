@@ -11,8 +11,8 @@
 <body>
     <h1>Cadastro de Clientes</h1>
     <form method="post" action="salvar.php">
-        Nome:<input name="nome" maxlength="50"><br>
-        Telefone:<input type="tel" maxlength="13" name="telefone"><br>
+        Nome:<input name="nome" maxlength="50" required><br>
+        Telefone:<input type="tel" maxlength="15" name="telefone" required><br>
         Cidade:<input name="cidade" maxlength="40"><br>
         Estado:
         <select id="estado" name="estado">
@@ -48,6 +48,34 @@
         E-mail:<input name="email" maxlength="50"><br>
         <button type="submit">Salvar</button>
     </form>
+
+    <?php
+    $arquivo = fopen("clientes.csv", "r");
+    //$conteudo = fread($arquivo, filesize("clientes.csv"));
+    //echo $conteudo;
+    while (!feof($arquivo)) {
+        $linha = fgets($arquivo);
+
+        $registro = explode(",", $linha);
+
+        if ($registro[0] != "") {
+            echo $registro[0] . " - ";
+            echo $registro[1] . " - ";
+            echo $registro[2] . " - ";
+            echo $registro[3] . " - ";
+            echo $registro[4] . "<br>";
+        }
+    }
+    fclose($arquivo);
+    ?>
+    <script>
+        <?php
+        $msg = $_GET["mensagem"] ?? "";
+        if ($msg == "salvo") {
+            echo "alert('Cliente salvo com sucesso!')";
+        }
+        ?>
+    </script>
 </body>
 
 </html>
